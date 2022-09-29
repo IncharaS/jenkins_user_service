@@ -43,7 +43,7 @@ pipeline{
           sh "docker build -t ${DOCKER_IMG_NAME}:latest -t ${DOCKER_IMG_NAME}:${env.BUILD_ID} ."
         }
       }
-      /*
+      
       stage('integration tests'){
         steps{
           echo 'running the tmp-user-service-container for integration testing...'
@@ -52,7 +52,7 @@ pipeline{
           sh 'curl -i http://localhost:7070/api/users'
         }
       }
-      */
+      
       stage('docker publish'){
         steps{
         withDockerRegistry([credentialsId: 'docker_creds', url: '']){
@@ -64,7 +64,7 @@ pipeline{
      post{
         always{
            echo 'stopping and removing the tmp-user-service-container...'
-           sh 'docker stop ${DOCKER_TMP_CONTAINER_NAME}'
+           sh "docker stop ${DOCKER_TMP_CONTAINER_NAME}"
            sh "docker rmi ${DOCKER_REPO}/${DOCKER_IMG_NAME}:latest ${DOCKER_REPO}/${DOCKER_IMG_NAME}:${env.BUILD_ID}"
            }}
       
