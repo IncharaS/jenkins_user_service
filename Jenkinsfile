@@ -68,6 +68,7 @@ pipeline{
            sh "docker rmi ${DOCKER_REPO}/${DOCKER_IMG_NAME}:latest ${DOCKER_REPO}/${DOCKER_IMG_NAME}:${env.BUILD_ID}"
            }}
       
+      
   
   
   
